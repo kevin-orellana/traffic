@@ -1,10 +1,10 @@
 function createcars(xi,yi,i1,nb,ux,uy,L,dt,R)
-global nc onroad firstcar nextcar lastcar x y p xd yd bd pd nextb ncmax %#ok<NUSED>
+global nc onroad firstcar nextcar lastcar x y p xd yd bd pd nextb nmax %#ok<NUSED>
   
-  while (nc < ncmax)
+  while()
       for b = 1:nb
         % randomly spawn cars based of R
-        if ( rand< L(b))
+        if ( rand<dt*R*L(b))
             nc = nc + 1;
             %randomly select a position of a new car
             p(nc) = rand*L(b);
@@ -26,5 +26,4 @@ global nc onroad firstcar nextcar lastcar x y p xd yd bd pd nextb ncmax %#ok<NUS
     %       penter(nc) = p(nc);
         end
       end
-  end
 end

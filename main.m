@@ -3,7 +3,7 @@
 % b = block index, nb = # of blocks
 
 clear % celar previous cars
-global nc lastcar nextcar firstcar onroad x y p xd yd bd pd nextb
+global nc lastcar nextcar firstcar onroad x y p xd yd bd pd nextb ncmax
 
 
 [xi, yi, i1,i2, ni, nb, ux, uy, L] = plotroad();
@@ -50,7 +50,7 @@ R = 4/(clockmax*Lmax);
 %R = 0.02;
 nc = 0;
 % cap the number of cars on map
-ncmax = 40;
+ncmax = 20;
 %intialize data strucutres containing the Map info
 % simulation data structures to keep track of cars on map
 firstcar = zeros(1, nb);
