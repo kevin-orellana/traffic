@@ -1,7 +1,6 @@
 % c = car index, nc = # of cars
 % i = intersection index, ni = # of intersections
 % b = block index, nb = # of blocks
-long float
 
 clear % celar previous cars
 global nc lastcar nextcar firstcar onroad x y p xd yd bd pd nextb
