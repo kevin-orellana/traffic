@@ -1,6 +1,6 @@
 function  movecars(xi,yi,i1,i2,ux,uy,nbout,bout,L,nb,S,dt)
 %
-    global   p lastcar nextcar firstcar x y nextb dmax vel
+    global   p lastcar nextcar firstcar x y nextb dmax aggregateVel
     
     % move cars by each block
     for b = 1:nb
@@ -50,7 +50,7 @@ function  movecars(xi,yi,i1,i2,ux,uy,nbout,bout,L,nb,S,dt)
             % by the distance traveled
             p(c) = p(c) + dt * v(d);
 %             disp("[dev]: speed of car " + c + " is " + v(d));
-            vel(c) = vel(c) + v(d);
+            aggregateVel(c) = aggregateVel(c) + v(d);
             if (L(b)<=p(c))
                 % rescale the postiion of the car by this block
                 p(c) = p(c) - L(b);

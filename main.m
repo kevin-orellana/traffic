@@ -4,9 +4,10 @@
 
 format long;
 clear % celar previous cars
-global nc lastcar nextcar firstcar onroad x y p xd yd bd pd nextb ncmax vel
+global nc lastcar nextcar firstcar onroad x y p xd yd bd pd nextb ncmax 
+global aggregateVel clockmax
 
-vel = zeros(1, nc);
+aggregateVel = zeros(1, nc);
 [xi, yi, i1,i2, ni, nb, ux, uy, L] = plotroad();
 
 % Note that nbin, bin can be derived from i2, and that nout, bout can be
@@ -125,8 +126,5 @@ for clock = 1:clockmax
 
 end
 
-c = vel./clockmax;
-cSum = sum(c);
-cAve = cSum / nc;
-disp("cAve: "+ cAve)
-disp(c);
+averagevelocity();
+
