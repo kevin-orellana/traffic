@@ -5,9 +5,11 @@
 format long;
 clear % celar previous cars
 global nc lastcar nextcar firstcar onroad x y p xd yd bd pd nextb ncmax 
-global aggregateVel clockmax
+global aggregateVel clockmax stopR waitT
 
 aggregateVel = zeros(1, nc);
+stopR = zeros(1, nc);
+waitT = zeros(1, nc);
 [xi, yi, i1,i2, ni, nb, ux, uy, L] = plotroad();
 
 % Note that nbin, bin can be derived from i2, and that nout, bout can be
@@ -126,5 +128,6 @@ for clock = 1:clockmax
 
 end
 
+carswaiting();
 averagevelocity();
 

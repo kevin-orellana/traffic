@@ -1,6 +1,6 @@
 function  movecars(xi,yi,i1,i2,ux,uy,nbout,bout,L,nb,S,dt)
 %
-    global   p lastcar nextcar firstcar pd bd x y nextb dmax
+    global p lastcar nextcar firstcar x y nextb dmax aggregateVel stopR waitT
     
     % move cars by each block
     for b = 1:nb
@@ -14,7 +14,7 @@ function  movecars(xi,yi,i1,i2,ux,uy,nbout,bout,L,nb,S,dt)
             % if this current car is the first car of the block 
             if (c==firstcar(b))
                 % if the first car is on red light of the block
-                elseif (S(b)==0)
+                if (S(b)==0)
                     % set distance to be the position - the length of the
                     % block still to be traveled
                     d = L(b) - p(c);
@@ -50,10 +50,19 @@ function  movecars(xi,yi,i1,i2,ux,uy,nbout,bout,L,nb,S,dt)
             % by the distance traveled
             p(c) = p(c) + dt * v(d);
 %             disp("[dev]: speed of car " + c + " is " + v(d));
+            aggregateVel(c) = aggregateVel(c) + v(d);
+            
+%             check if v(d) == 0 or car is waiting
+            if v(d) == 0
+%                 set stopR(c) to 1
 
+                stopR(c) = 1;
+            end
+         
             if (L(b)<=p(c))
                 % rescale the postiion of the car by this block
                 p(c) = p(c) - L(b);
+                decidenextblock(xi,yi,i2,ux,uy,nbout,bout,b,c)
                 cartonextblock(xi,yi,i1,ux,uy,c,b)
             else
                 % update it's position 
@@ -64,9 +73,9 @@ function  movecars(xi,yi,i1,i2,ux,uy,nbout,bout,L,nb,S,dt)
             end 
             % iterate to next car
             c = nextc;
-    end
+      end
     % while loops over cars on block
-    end % for loops over blocks
+   end % for loops over blocks
 end
 
 

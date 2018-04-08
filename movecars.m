@@ -1,6 +1,6 @@
 function  movecars(xi,yi,i1,i2,ux,uy,nbout,bout,L,nb,S,dt)
 %
-    global   p lastcar nextcar firstcar x y nextb dmax aggregateVel
+    global p lastcar nextcar firstcar x y nextb dmax aggregateVel stopR waitT
     
     % move cars by each block
     for b = 1:nb
@@ -51,6 +51,18 @@ function  movecars(xi,yi,i1,i2,ux,uy,nbout,bout,L,nb,S,dt)
             p(c) = p(c) + dt * v(d);
 %             disp("[dev]: speed of car " + c + " is " + v(d));
             aggregateVel(c) = aggregateVel(c) + v(d);
+            
+%             check if v(d) == 0 or car is waiting
+            if v(d) == 0
+%                 set stopR(c) to 1 to indicate car is waiting
+                stopR(c) = 1;
+%                 add dt to waitT(c) to indicate amount time car c has
+%                 waited
+                waitT(c) = waitT(c) + dt;
+            else
+                stopR(c) = 0;
+            end
+         
             if (L(b)<=p(c))
                 % rescale the postiion of the car by this block
                 p(c) = p(c) - L(b);
