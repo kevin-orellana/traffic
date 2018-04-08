@@ -4,9 +4,9 @@
 
 format long;
 clear % celar previous cars
-global nc lastcar nextcar firstcar onroad x y p xd yd bd pd nextb ncmax
+global nc lastcar nextcar firstcar onroad x y p xd yd bd pd nextb ncmax vel
 
-
+vel = zeros(1, nc);
 [xi, yi, i1,i2, ni, nb, ux, uy, L] = plotroad();
 
 % Note that nbin, bin can be derived from i2, and that nout, bout can be
@@ -40,7 +40,7 @@ jgreen = ones(1,ni);
 tlcstep = 5;
 tlc = tlcstep;
 % total time of lights
-clockmax = 1000;
+clockmax = 100;
 % intitialize state of lights for each block (one-way)
 S = zeros(1, nb);
 dt = 1;
@@ -124,3 +124,6 @@ for clock = 1:clockmax
     %pause
 
 end
+
+c = vel./clockmax;
+disp(c);
