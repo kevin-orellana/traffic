@@ -126,4 +126,7 @@ for clock = 1:clockmax
 end
 
 c = vel./clockmax;
+cSum = sum(c);
+cAve = cSum / nc;
+disp("cAve: "+ cAve)
 disp(c);
