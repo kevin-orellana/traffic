@@ -40,17 +40,16 @@ end
 % Initialize the street lights, one green per intersection
 jgreen = ones(1,ni);
 % time itnerval between light changes
-tlcstep = 5;
+tlcstep = 10;
 tlc = tlcstep;
 % total time of lights
-clockmax = 100;
+clockmax = 1000;
 % intitialize state of lights for each block (one-way)
 S = zeros(1, nb);
 dt = 1;
 Lmax = max(L);
 % calc spawn rate of cars on the map as a factor of time 
 % and maximum length of blocks
-R = 4/(clockmax*Lmax);
 %R = 0.02;
 nc = 0;
 % cap the number of cars on map
