@@ -1,11 +1,17 @@
+function [] = simulator (set_ncmax, set_tlc, set_maxVel)
 % c = car index, nc = # of cars
 % i = intersection index, ni = # of intersections
 % b = block index, nb = # of blocks
 
-format long;
-clear % celar previous cars
-global nc lastcar nextcar firstcar onroad x y p xd yd bd pd nextb ncmax 
+global nc lastcar nextcar firstcar onroad x y p xd yd bd pd nextb ncmax vmax
 global aggregateVel clockmax stopR waitT
+
+% cap the number of cars on map
+ncmax = set_ncmax;
+tlcstep = set_tlc;
+vmax = set_maxVel;
+%clear % celar previous cars
+format long;
 
 aggregateVel = zeros(1, nc);
 stopR = zeros(1, nc);
@@ -43,7 +49,7 @@ jgreen = ones(1,ni);
 tlcstep = 5;
 tlc = tlcstep;
 % total time of lights
-clockmax = 1000;
+clockmax = 10000;
 % intitialize state of lights for each block (one-way)
 S = zeros(1, nb);
 dt = 1;
@@ -52,8 +58,7 @@ Lmax = max(L);
 % and maximum length of blocks
 %R = 0.02;
 nc = 0;
-% cap the number of cars on map
-ncmax = 30;
+
 %intialize data strucutres containing the Map info
 % simulation data structures to keep track of cars on map
 firstcar = zeros(1, nb);
