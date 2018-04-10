@@ -40,10 +40,10 @@ end
 % Initialize the street lights, one green per intersection
 jgreen = ones(1,ni);
 % time itnerval between light changes
-tlcstep = 10;
+tlcstep = 5;
 tlc = tlcstep;
 % total time of lights
-clockmax = 100;
+clockmax = 1000;
 % intitialize state of lights for each block (one-way)
 S = zeros(1, nb);
 dt = 1;
@@ -53,7 +53,7 @@ Lmax = max(L);
 %R = 0.02;
 nc = 0;
 % cap the number of cars on map
-ncmax = 20;
+ncmax = 30;
 %intialize data strucutres containing the Map info
 % simulation data structures to keep track of cars on map
 firstcar = zeros(1, nb);
