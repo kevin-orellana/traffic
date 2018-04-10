@@ -2,7 +2,7 @@ function [speed] = v(d)
     
     global dmax 
     dmin = 0.4;
-    vmax = 0.2;
+    vmax = 0.3;
     
 %     if d is less than dmin
     if d < dmin

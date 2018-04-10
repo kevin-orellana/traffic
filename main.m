@@ -43,7 +43,7 @@ jgreen = ones(1,ni);
 tlcstep = 10;
 tlc = tlcstep;
 % total time of lights
-clockmax = 1000;
+clockmax = 100;
 % intitialize state of lights for each block (one-way)
 S = zeros(1, nb);
 dt = 1;

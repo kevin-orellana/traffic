@@ -1,6 +1,8 @@
-global aggregateVel clockmax nc
+global aggregateVel clockmax 
 
 averageVel = aggregateVel./clockmax;
-sumVel = sum(averageVel);
-sumAve = sumVel / nc;
-disp("Average velocities: "+ sumAve)
+meanVelocity = mean(averageVel);
+stdVelocity = std(averageVel);
+
+disp("Mean velocity of cars in traffic: "+ meanVelocity)
+disp("Standard Deviation of velocity: "+ stdVelocity)
