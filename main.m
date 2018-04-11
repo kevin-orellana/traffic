@@ -3,9 +3,9 @@
 % b = block index, nb = # of blocks
 
 format long;
-clear % celar previous cars
+% clear % celar previous cars
 global nc lastcar nextcar firstcar onroad x y p xd yd bd pd nextb ncmax 
-global aggregateVel clockmax stopR waitT
+global aggregateVel clockmax stopR waitT ni nbin bin 
 
 aggregateVel = zeros(1, nc);
 stopR = zeros(1, nc);
@@ -68,6 +68,7 @@ yd = zeros(1, ncmax);
 pd = zeros(1, ncmax);
 bd = zeros(1, ncmax);
 nextb = zeros(1, ncmax);
+% ncb = zeros(1, nb);
 
 % commence the simulation 
 for clock = 1:clockmax
@@ -80,7 +81,7 @@ for clock = 1:clockmax
     % where 1<=jgreen(i)<=nbin(i).
     % Let S(b) be the state of the light at the end of block b, where S = 0
     % denotes red and S = 1 denotes green
-
+    ncb = numcarsonblock();
     % set the lights at each iteration
     if t > tlc
         % for each intersection

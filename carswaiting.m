@@ -1,4 +1,4 @@
-global stopR waitT clockmax nc
+global stopR waitT clockmax 
 
 totalNumCarsWaiting = sum(stopR);
 individualCarWaitTimeAverage = waitT./clockmax;

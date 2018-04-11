@@ -6,9 +6,6 @@ yi = [3 .5 5.5 4 2 0 3 6 2 4 5.5 .5 3 ];
 
 % i1(b), i2(b) = indices of intersections connected by block b, ordered by
 % the direction traffic flow
-% i1 = [1 3 8  11 13 12 6 2 2 5 1 3 4 11 10 12 9 8 13 6 5 7 4 9 9 7 4 10];
-% i2 = [3 8 11 13 12 6  2 1 5 6 5 4 1 10 8 9 13  4 10 9 4 5 7 5 7 10 10 9];
-
 i1 = [1 3 8  11 13 12 6 2 2 5 5 4 1 11 10 9 13 8 10 6 5 7 4 9 9 7 4 10];
 i2 = [3 8 11 13 12 6  2 1 5 6 1 3 4 10 8 12 9  4 13 9 4 5 7 5 7 10 10 9];
 ni = length(xi);  % ni = # of intersections
