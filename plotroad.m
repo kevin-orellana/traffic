@@ -42,7 +42,7 @@ for i = 1:ni
    xt = xi(i)+0.1;
    yt = yi(i)-0.1;
    % text the interesection
-   text(xt,yt,str)
+%    text(xt,yt,str)
 end
 
 hold off
