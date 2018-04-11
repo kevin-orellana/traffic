@@ -31,7 +31,7 @@ for b = 1:nb
     xt = (xi(i1(b)) + xi(i2(b)))/2;
     yt = (yi(i1(b)) + yi(i2(b)))/2;
     str = ['(',num2str(b),')'];
-    text(xt,yt,str)
+    %text(xt,yt,str)
 end
 
 for i = 1:ni
