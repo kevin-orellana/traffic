@@ -1,6 +1,6 @@
 function  movecars(xi,yi,i1,i2,ux,uy,nbout,bout,L,nb,S,dt)
 %
-    global p lastcar nextcar firstcar x y nextb dmax aggregateVel stopR waitT 
+    global p lastcar nextcar firstcar x y nextb dmax aggregateVel stopR waitT
     
     % move cars by each block
     for b = 1:nb

@@ -40,10 +40,10 @@ end
 % Initialize the street lights, one green per intersection
 jgreen = ones(1,ni);
 % time itnerval between light changes
-tlcstep = 5;
+tlcstep = 2;
 tlc = tlcstep;
 % total time of lights
-clockmax = 1000;
+clockmax = 100;
 % intitialize state of lights for each block (one-way)
 S = zeros(1, nb);
 dt = 1;

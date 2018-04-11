@@ -1,15 +1,11 @@
 % c = car index, nc = # of cars
 % i = intersection index, ni = # of intersections
 % b = block index, nb = # of blocks
-
-format long;
+long float;
 clear % celar previous cars
-global nc lastcar nextcar firstcar onroad x y p xd yd bd pd nextb ncmax 
-global aggregateVel clockmax stopR waitT
+global nc lastcar nextcar firstcar onroad x y p xd yd bd pd nextb
 
-aggregateVel = zeros(1, nc);
-stopR = zeros(1, nc);
-waitT = zeros(1, nc);
+
 [xi, yi, i1,i2, ni, nb, ux, uy, L] = plotroad();
 
 % Note that nbin, bin can be derived from i2, and that nout, bout can be
@@ -50,10 +46,11 @@ dt = 1;
 Lmax = max(L);
 % calc spawn rate of cars on the map as a factor of time 
 % and maximum length of blocks
+R = 4/(clockmax*Lmax);
 %R = 0.02;
 nc = 0;
 % cap the number of cars on map
-ncmax = 30;
+ncmax = 40;
 %intialize data strucutres containing the Map info
 % simulation data structures to keep track of cars on map
 firstcar = zeros(1, nb);
@@ -119,14 +116,10 @@ for clock = 1:clockmax
     end
     
     % plot the cars - create them every iteration?
-    createcars(xi,yi,i1,nb,ux,uy,L);
+    createcars(xi,yi,i1,nb,ux,uy,L,dt,R);
     movecars(xi,yi,i1,i2,ux,uy,nbout,bout,L,nb,S,dt);
 
-    %plotcars(nc,x,y,onroad)
+    plotcars(nc,x,y,onroad)
     %pause
 
 end
-
-carswaiting();
-averagevelocity();
-

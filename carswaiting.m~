@@ -1,13 +1,11 @@
 global stopR waitT clockmax nc
 
 totalNumCarsWaiting = sum(stopR);
-individualCarWaitTimeAverage = waitT./clockmax;
-mean_individCarWait = mean(individualCarWaitTimeAverage);
-std_individCarWait = std(individualCarWaitTimeAverage);
 
+averageWaitTime = waitT./clockmax;
+totalWaitTime = sum(averageWaitTime);
+averageWaitTime = totalWaitTime / nc;
 
-
-disp("Average car waiting time per time step (standard dev): " +  mean_individCarWait + '(' + );
-disp("Standard Deviation of car waiting time: " + std_individCarWait  );
-
+disp("Total num times a car waited: " + totalNumCarsWaiting );
+disp("Cumulative average wait time: " + averageWaitTime );
 
