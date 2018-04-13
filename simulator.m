@@ -95,7 +95,7 @@ for clock = 1:clockmax
     createcars(xi,yi,i1,nb,ux,uy,L);
     movecars(xi,yi,i1,i2,ux,uy,nbout,bout,L,nb,S,dt);
 
-    plotcars(nc,x,y,onroad)
+%     plotcars(nc,x,y,onroad)
 end
 
 carswaiting();
