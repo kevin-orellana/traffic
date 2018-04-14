@@ -1,13 +1,13 @@
 function  movecars(xi,yi,i1,i2,ux,uy,nbout,bout,L,nb,S,dt)
 %
     global p lastcar nextcar firstcar x y nextb dmax aggregateVel stopR waitT
-    
+    dmax = 1.0;
+
     % move cars by each block
     for b = 1:nb
         % select first car of the block
         c = firstcar(b);
         % set maximum distance to be used
-        dmax = 1.0;
         
         % while there are cars in the block
         while(c>0)
@@ -38,26 +38,20 @@ function  movecars(xi,yi,i1,i2,ux,uy,nbout,bout,L,nb,S,dt)
                 % set the distance as this car's position subtracted by the
                 % positon of the car ahead
               d = p(ca) - p(c);
-            end
-            
-            % hold current position of car
-            pz = p(c);
-            
-            % hold the next car
-            nextc = nextcar(c);
-            
+            end    
             % update the position of this car
             % by the distance traveled
             p(c) = p(c) + dt * v(d);
 %             disp("[dev]: speed of car " + c + " is " + v(d));
             aggregateVel(c) = aggregateVel(c) + v(d);
-            
+            % hold the next car if it exists
+         
 %             check if v(d) == 0 or car is waiting
             if v(d) == 0
 %                 set stopR(c) to 1 to indicate car is waiting
                 stopR(c) = 1;
-%                 add dt to waitT(c) to indicate amount time car c has
-%                 waited
+%                add dt to waitT(c) to indicate amount time 
+%                car c has waited
                 waitT(c) = waitT(c) + dt;
             else
                 stopR(c) = 0;
@@ -75,8 +69,8 @@ function  movecars(xi,yi,i1,i2,ux,uy,nbout,bout,L,nb,S,dt)
                 % car ahead is now this car
                 ca = c;
             end 
-            % iterate to next car
-            c = nextc;
+           % iterate to next car
+            c = nextcar(c);
       end
     % while loops over cars on block
    end % for loops over blocks

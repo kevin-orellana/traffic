@@ -1,4 +1,4 @@
-function [] = setlights()
+function [] =sensorized_setlights()
     
     global ni nbin ncb S bin weights
      % Traffic Lights
@@ -28,11 +28,11 @@ function [] = setlights()
             most_populated_block = bin(i, 1);
     %       keep track of number of cars on each block. Default value is num
     %       of cars on first block entering intersection i
-            most_populated_block_cars = ncb(bin(i,1));
-            for b =1: bei
+            most_populated_block_cars = weights(bin(i,1));
+            for b =1 : bei
                 block = bin(i, b);
     %           get number of cars on block block"
-                cars_on_block = ncb(block);
+                cars_on_block = weights(block);
     %           if block block has more cars than its predecessor blocks,
     %           update most_populated_block and most_populated_block_cars
                 if (cars_on_block > most_populated_block_cars)

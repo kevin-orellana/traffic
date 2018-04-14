@@ -1,5 +1,6 @@
-function [] = numcarsonblock()
+function [] = carsonblock()
     global nb firstcar nextcar ncb
+    
     for b = 1:nb
 %       check if there's a car on block b
         c = firstcar(b);

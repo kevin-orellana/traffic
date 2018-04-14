@@ -1,10 +1,10 @@
 function createcars(xi,yi,i1,nb,ux,uy,L)
 global nc onroad firstcar nextcar lastcar x y p xd yd bd pd nextb ncmax %#ok<NUSED>
-  
-  while (nc < ncmax)
+ 
+    while (nc < ncmax)
       for b = 1:nb
         % randomly spawn cars
-        if ( rand< L(b))
+        if ( rand < .5)
             nc = nc + 1;
             %randomly select a position of a new car
             p(nc) = rand*L(b);
@@ -16,12 +16,10 @@ global nc onroad firstcar nextcar lastcar x y p xd yd bd pd nextb ncmax %#ok<NUS
             onroad(nc) = 1;
             % insert the car into the graph
             insertnewcar(nc,b,p)
-            nextb(nc) = b;
-    %       metrics for recording       
-    %       tenter(nc) = t;
-    %       benter(nc) = b;
-    %       penter(nc) = p(nc);
+        end
+        if (nc >= ncmax)
+            break
         end
       end
-  end
+   end
 end

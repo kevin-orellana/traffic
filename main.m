@@ -2,14 +2,19 @@
 % i = intersection index, ni = # of intersections
 % b = block index, nb = # of blocks
 
-format long;
-% clear % celar previous cars
-global nc lastcar nextcar firstcar onroad x y p xd yd bd pd nextb ncmax 
-global aggregateVel clockmax stopR waitT ni nbin bin 
+global nc lastcar nextcar firstcar x y p nextb ncmax vmax onroad
+global aggregateVel clockmax stopR waitT ncb ni nbin bin S nb bout
+global t tlc tlcstep jgreen weights
 
-aggregateVel = zeros(1, nc);
-stopR = zeros(1, nc);
-waitT = zeros(1, nc);
+% cap the number of cars on map
+ncmax = 45;
+tlcstep = 5;
+vmax = .5;
+format long;
+
+aggregateVel = zeros(1, ncmax);
+stopR = zeros(1, ncmax);
+waitT = zeros(1, ncmax);
 [xi, yi, i1,i2, ni, nb, ux, uy, L] = plotroad();
 
 % Note that nbin, bin can be derived from i2, and that nout, bout can be
@@ -40,10 +45,10 @@ end
 % Initialize the street lights, one green per intersection
 jgreen = ones(1,ni);
 % time itnerval between light changes
-tlcstep = 2;
+tlcstep = 5;
 tlc = tlcstep;
 % total time of lights
-clockmax = 100;
+clockmax = 10000;
 % intitialize state of lights for each block (one-way)
 S = zeros(1, nb);
 dt = 1;
@@ -52,80 +57,39 @@ Lmax = max(L);
 % and maximum length of blocks
 %R = 0.02;
 nc = 0;
-% cap the number of cars on map
-ncmax = 30;
+
 %intialize data strucutres containing the Map info
 % simulation data structures to keep track of cars on map
 firstcar = zeros(1, nb);
-nextcar = zeros(1, ncmax);
 lastcar = zeros(1, nb);
-onroad = zeros(1, ncmax);
+nextcar = zeros(1, ncmax);
 x = zeros(1, ncmax);
 y = zeros(1, ncmax);
 p = zeros(1, ncmax);
-xd = zeros(1, ncmax);
-yd = zeros(1, ncmax);
-pd = zeros(1, ncmax);
-bd = zeros(1, ncmax);
 nextb = zeros(1, ncmax);
-% ncb = zeros(1, nb);
+ncb = zeros(1, nb);
+weights = zeros(1, nb);
+onroad = zeros(1,ncmax);
 
 % commence the simulation 
 for clock = 1:clockmax
-        t = clock * dt;
-    % Traffic Lights
-    % At any given time, the traffic light at intersection i is green for
-    % exactly one of the bolcks that enter that intersection and red for all
-    % the others enter that intersection.
-    % Let jgreen(i) be an integer designating which block is the green light,
-    % where 1<=jgreen(i)<=nbin(i).
-    % Let S(b) be the state of the light at the end of block b, where S = 0
-    % denotes red and S = 1 denotes green
-    ncb = numcarsonblock();
-    % set the lights at each iteration
-    if t > tlc
-        % for each intersection
-        for i = 1:ni
-            % if there is only one incoming block into the intersection
-            if nbin(i) == 1
-                % switch the light of the incoming block
-                S(bin(i,1))  = mod(S(bin(i,1))+1,2);
-            else
-                % if there is more than one block into the intersection
-                % set the light on for the next block entering intersection
-                jgreen(i) = jgreen(i) + 1;
-                % reset light iteration
-                if jgreen(i) > nbin(i)
-                    jgreen(i) = 1;
-                end
-            end
-        end
-        % increase the time step
-        tlc = tlc + tlcstep;
-    end
-    
-    % for each intersection
-    for i = 1:ni
-        % if number of block entering the intersection is not 1
-        if nbin(i) ~= 1
-            % for each block entering into intersection
-            for j = 1 : nbin(i)
-                % state of light of all blocks entering are set to red
-                S(bin(i, j)) = 0;
-            end
-            % set the incoming block of jgreen subscript to green
-            b = bin(i, jgreen(i));
-            S(b) = 1;
-        end
-    end
-    
-    % plot the cars - create them every iteration?
+       t = clock * dt;
+% ===== density-based traffic light system ====
+%     calculate number of cars on each block
+        sensorized_carsonblock();
+
+%     set lights based on number of cars on block
+        sensorized_setlights();
+
+% ===== density-based traffic light system end ====
+
+% ===== synchronous traffic light system ====
+%     comment/uncomment the previous two functions to switch system 
+%     synclights();
+% ===== synchronous traffic light system end ====
     createcars(xi,yi,i1,nb,ux,uy,L);
     movecars(xi,yi,i1,i2,ux,uy,nbout,bout,L,nb,S,dt);
-
-    plotcars(nc,x,y,onroad)
-    %pause
-
+%    plotcars(nc,x,y,onroad)
 end
 
 carswaiting();
