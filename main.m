@@ -7,7 +7,7 @@ global aggregateVel clockmax stopR waitT ncb ni nbin bin S nb bout
 global t tlc tlcstep jgreen weights
 
 % cap the number of cars on map
-ncmax = 45;
+ncmax = 30;
 tlcstep = 5;
 vmax = .5;
 format long;
@@ -89,7 +89,7 @@ for clock = 1:clockmax
 % ===== synchronous traffic light system end ====
     createcars(xi,yi,i1,nb,ux,uy,L);
     movecars(xi,yi,i1,i2,ux,uy,nbout,bout,L,nb,S,dt);
-%    plotcars(nc,x,y,onroad)
+    plotcars(nc,x,y,onroad)
 end
 
 carswaiting();

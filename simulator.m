@@ -77,10 +77,10 @@ for clock = 1:clockmax
        t = clock * dt;
 % ===== density-based traffic light system ====
 %     calculate number of cars on each block
-      sensorized_carsonblock();
+      carsonblock();
 
 %     set lights based on number of cars on block
-      sensorized_setlights();
+      setlights();
 
 % ===== density-based traffic light system end ====
 
