@@ -1,0 +1,3 @@
+global allV
+
+hist(allV)

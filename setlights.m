@@ -1,6 +1,6 @@
 function [] = setlights()
     
-    global ni nbin ncb S bin weights
+    global ni nbin ncb S bin
      % Traffic Lights
         % At any given time, the traffic light at intersection i is green for
         % exactly one of the blocks that enter that intersection and red for all

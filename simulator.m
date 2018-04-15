@@ -5,9 +5,10 @@ function [] = simulator (set_ncmax, set_tlc, set_maxVel)
 
 global nc lastcar nextcar firstcar x y p nextb ncmax vmax onroad
 global aggregateVel clockmax stopR waitT ncb ni nbin bin S nb bout
-global t tlc tlcstep jgreen weights
+global t tlc tlcstep jgreen weights allV
 
 % cap the number of cars on map
+allV = zeros(1);
 ncmax = set_ncmax;
 tlcstep = set_tlc;
 vmax = set_maxVel;
@@ -49,7 +50,7 @@ jgreen = ones(1,ni);
 tlcstep = 5;
 tlc = tlcstep;
 % total time of lights
-clockmax = 10000;
+clockmax = 1000;
 % intitialize state of lights for each block (one-way)
 S = zeros(1, nb);
 dt = 1;
@@ -90,8 +91,9 @@ for clock = 1:clockmax
 % ===== synchronous traffic light system end ====
     createcars(xi,yi,i1,nb,ux,uy,L);
     movecars(xi,yi,i1,i2,ux,uy,nbout,bout,L,nb,S,dt);
-    plotcars(nc,x,y,onroad)
+    %plotcars(nc,x,y,onroad)
 end
 
 carswaiting();
 averagevelocity();
+plot_allspeed();
