@@ -34,7 +34,7 @@ function [] = kingsimulator()
 %          init_nc = init_nc + dt_nc;
           init_tlc = init_tlc + dt_tlc;
 %          init_vel = init_vel + dt_vel;
-        simulator(nc_sim, tlc_sim, vel_sim);
+        simulator(nc_sim, tlc_sim, vel_sim, 1000);
         disp(g_run);
     end
 %     disp(g_vave);

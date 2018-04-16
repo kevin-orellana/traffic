@@ -17,7 +17,7 @@ xlabel('Number of Cars')
 ylabel('Average Car Speed')
 
 figure(3)
-plot(x_max, g_vave);
+plot(x_vmax, g_vave);
 xlabel('Max Speed Limit')
 ylabel('Average Car Speed')
 
