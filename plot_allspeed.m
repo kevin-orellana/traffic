@@ -1,3 +1,4 @@
 global allV
 
-hist(allV)
+
+hist(allV,10)

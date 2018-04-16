@@ -1,17 +1,17 @@
-function [] = simulator (set_ncmax, set_tlc, set_speedlimit, set_clockmax)
+function [] = simulator (set_ncmax, set_tlc, set_maxVel)
 % c = car index, nc = # of cars
 % i = intersection index, ni = # of intersections
 % b = block index, nb = # of blocks
 
 global nc lastcar nextcar firstcar x y p nextb ncmax vmax onroad
 global aggregateVel clockmax stopR waitT ncb ni nbin bin S nb bout
-global t tlc tlcstep jgreen weights allV clock L
+global t tlc tlcstep jgreen weights allV clock
 
 % cap the number of cars on map
 allV = zeros(1);
 ncmax = set_ncmax;
 tlcstep = set_tlc;
-vmax = set_speedlimit;
+vmax = set_maxVel;
 format long;
 
 aggregateVel = zeros(1, ncmax);
@@ -41,7 +41,8 @@ for i = 1:ni
     bin(i, 1:nbin(i)) = find(i2 == i);
     bout(i, 1:nbout(i)) = find(i1 == i);
 end
-
+% check1 = sum(nbin) - nb
+% check2 = sum(nbout) - nb
 
 % Initialize the street lights, one green per intersection
 jgreen = ones(1,ni);
@@ -49,13 +50,16 @@ jgreen = ones(1,ni);
 tlcstep = 5;
 tlc = tlcstep;
 % total time of lights
-clockmax = set_clockmax;
+clockmax = 1000;
 % intitialize state of lights for each block (one-way)
 S = zeros(1, nb);
 dt = 1;
 Lmax = max(L);
-
+% calc spawn rate of cars on the map as a factor of time 
+% and maximum length of blocks
+%R = 0.02;
 nc = 0;
+
 %intialize data strucutres containing the Map info
 % simulation data structures to keep track of cars on map
 firstcar = zeros(1, nb);
@@ -74,7 +78,7 @@ for clock = 1:clockmax
        t = clock * dt;
 % ===== density-based traffic light system ====
 %     calculate number of cars on each block
-      sensorized_carsonblock();
+      sensorized2_carsonblock(L);
 
 %     set lights based on number of cars on block
       sensorized_setlights();

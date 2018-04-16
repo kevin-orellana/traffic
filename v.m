@@ -14,6 +14,7 @@ function [speed] = v(d)
     else
         speed = vmax;
     end
+    
     allV = [allV, speed];
 end
 

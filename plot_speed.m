@@ -9,4 +9,10 @@ for i=1:clockmax
 end
 
 j = 0:0.01:1.35;
-plot(j, data(:))
+
+Z = plot(j, data(:),'r');
+
+set(Z,'LineWidth',3)
+title('Speed Function');
+xlabel("Distance") % x-axis label
+ylabel("Speed") % y-axis label
