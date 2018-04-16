@@ -1,5 +1,6 @@
 function [xi,yi,i1,i2,ni,nb,ux,uy,L] = plotroad()
 %
+global L
 
 % xi(i), yi(i) = coordinates of intersection i
 xi = [0 .5  .5 2 2 3 3 3 4 4 5.5 5.5 6 ];
@@ -15,15 +16,15 @@ nb = length(i1);  % nb = # of blocks
 % L(b) = length of block b
 % (ux(b), uy(b)) = unit vector along block b in direction of traffic flow
 % Given xi, yi, we can find L, ux, uy as follows:
-
 ux = xi(i2)-xi(i1);
 uy = yi(i2)-yi(i1);
 L = sqrt(ux.^2+uy.^2);
 ux = ux./L;
 uy = uy./L;
+%
 hold on
 axis([min(xi)-1 max(xi)+1 min(yi)-1 max(yi)+1])
-
+% 
 for b = 1:nb
 
     ux1 = xi(i2(b))-xi(i1(b));
@@ -43,7 +44,7 @@ for i = 1:ni
    xt = xi(i)+0.1;
    yt = yi(i)-0.1;
    % text the interesection
-   % text(xt,yt,str)
+%    text(xt,yt,str)
 end
 
 hold off
