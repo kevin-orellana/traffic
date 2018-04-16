@@ -50,7 +50,7 @@ jgreen = ones(1,ni);
 tlcstep = 5;
 tlc = tlcstep;
 % total time of lights
-clockmax = 1000;
+clockmax = 1300;
 % intitialize state of lights for each block (one-way)
 S = zeros(1, nb);
 dt = 1;
@@ -78,16 +78,16 @@ for clock = 1:clockmax
        t = clock * dt;
 % ===== density-based traffic light system ====
 %     calculate number of cars on each block
-      carsonblock();
-
-%     set lights based on number of cars on block
-      setlights();
+%       carsonblock();
+% 
+% %     set lights based on number of cars on block
+%       setlights();
 
 % ===== density-based traffic light system end ====
 
 % ===== synchronous traffic light system ====
 %     comment/uncomment the previous two functions to switch system 
-%     synclights();
+     synclights();
 % ===== synchronous traffic light system end ====
     createcars(xi,yi,i1,nb,ux,uy,L);
     movecars(xi,yi,i1,i2,ux,uy,nbout,bout,L,nb,S,dt);
@@ -96,4 +96,4 @@ end
 
 carswaiting();
 averagevelocity();
-plot_allspeed();
+% plot_allspeed();
