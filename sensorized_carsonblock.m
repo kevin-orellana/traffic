@@ -1,4 +1,4 @@
-function [] = sensorized_carsonblock()
+function [] = sensorized_carsonblock(L)
     global nb firstcar nextcar weights p
     for b = 1:nb
 %       check if there's a car on block b
@@ -7,10 +7,10 @@ function [] = sensorized_carsonblock()
             weights(b) = 0;
 %        if there is a car, get a count of all the cars on block b
         else
-            weight = p(c);
+            weight = p(c) / L(b) ;
             nc = nextcar(c);
             while (nc ~= 0)
-                weight = weight + p(nc);
+                weight = weight + (p(nc) / L(b));
                 nc = nextcar(nc);
             end
 %           set the number of cars on block b to count
