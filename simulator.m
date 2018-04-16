@@ -5,7 +5,7 @@ function [] = simulator (set_ncmax, set_tlc, set_maxVel)
 
 global nc lastcar nextcar firstcar x y p nextb ncmax vmax onroad
 global aggregateVel clockmax stopR waitT ncb ni nbin bin S nb bout
-global t tlc tlcstep jgreen weights allV
+global t tlc tlcstep jgreen weights allV clock L
 
 % cap the number of cars on map
 allV = zeros(1);
@@ -78,10 +78,10 @@ for clock = 1:clockmax
        t = clock * dt;
 % ===== density-based traffic light system ====
 %     calculate number of cars on each block
-      carsonblock();
+      sensorized_carsonblock();
 
 %     set lights based on number of cars on block
-      setlights();
+      sensorized_setlights();
 
 % ===== density-based traffic light system end ====
 
