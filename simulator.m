@@ -70,27 +70,24 @@ ncb = zeros(1, nb);
 weights = zeros(1, nb);
 onroad = zeros(1,ncmax);
 
-% commence the simulation 
+% create our set number of cars
 createcars(xi,yi,i1,nb,ux,uy,L);
+
+% commence the simulation 
 
 for clock = 1:clockmax
        t = clock * dt;
 % ===== density-based traffic light system ====
-%     calculate number of cars on each block
-       carsonblock();
-% 
 % %     set lights based on number of cars on block
        setlights();
-%       sensorized_carsonblock();
-
-%     set lights based on number of cars on block
-%       sensorized_setlights();
 % ===== density-based traffic light system end ====
 
 % ===== synchronous traffic light system ====
-%     comment/uncomment the previous two functions to switch system 
+%     comment the previous function to switch  
+%     traffic to synchronized lights
 %     synclights();
 % ===== synchronous traffic light system end ====
+
     movecars(xi,yi,i1,i2,ux,uy,nbout,bout,L,nb,S,dt);
     plotcars(nc,x,y,onroad)
 end

@@ -9,6 +9,8 @@ function [] = setlights()
         % where 1<=jgreen(i)<=nbin(i).
         % Let S(b) be the state of the light at the end of block b, where S = 0
         % denotes red and S = 1 denotes green
+     %calculate number of cars on block
+     carsonblock();
 
 %   for each intersection
     for i = 1:ni

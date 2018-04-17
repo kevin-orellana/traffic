@@ -1,9 +1,9 @@
 function [] = kingsimulator()
     global g_tave g_tstd g_vave g_vstd g_nc g_step g_vmax g_runs g_run
    
-    g_runs = 3;
+    g_runs = 5;
     
-    init_vel = .7;
+    init_vel = .5;
     end_vel = 1.5;
 
     init_nc = 30;
@@ -34,10 +34,10 @@ function [] = kingsimulator()
 %          init_nc = init_nc + dt_nc;
           init_tlc = init_tlc + dt_tlc;
 %          init_vel = init_vel + dt_vel;
-        simulator(nc_sim, tlc_sim, vel_sim, 1000);
+        simulator(nc_sim, tlc_sim, vel_sim, 10000);
         disp(g_run);
     end
 %     disp(g_vave);
 %     disp(g_vstd);
-    plot_graphs();
+      plot_graphs();
 end
