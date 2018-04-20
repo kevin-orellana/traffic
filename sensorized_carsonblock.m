@@ -8,7 +8,7 @@ function [] = sensorized_carsonblock()
             weights(b) = 0;
 %        if there is a car, get a weighted count of all car positions on block b
         else
-            weight = p(c) / L(b) ;
+            weight = p(c) / L(b) ; 
             nc = nextcar(c);
             while (nc ~= 0)
                 weight = weight + (p(nc) / L(b));

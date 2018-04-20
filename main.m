@@ -5,6 +5,7 @@
 global nc lastcar nextcar firstcar x y p nextb ncmax vmax onroad
 global aggregateVel clockmax stopR waitT ncb ni nbin bin S nb bout
 global t tlc tlcstep jgreen weights
+global L
 
 % cap the number of cars on map
 ncmax = 30;
@@ -51,7 +52,7 @@ tlc = tlcstep;
 clockmax = 10000;
 % intitialize state of lights for each block (one-way)
 S = zeros(1, nb);
-dt = 1;
+dt = .5;
 Lmax = max(L);
 % calc spawn rate of cars on the map as a factor of time 
 % and maximum length of blocks
