@@ -5,7 +5,8 @@ function [] = simulator (set_ncmax, set_tlc, set_speedlimit, set_clockmax)
 
 global nc lastcar nextcar firstcar x y p nextb ncmax vmax onroad
 global aggregateVel clockmax stopR waitT ncb ni nbin bin S nb bout
-global t tlc tlcstep jgreen weights allV clock L
+global t tlc tlcstep jgreen weights allV clock L final_weights
+
 
 % cap the number of cars on map
 allV = zeros(1);
@@ -17,7 +18,7 @@ format long;
 aggregateVel = zeros(1, ncmax);
 stopR = zeros(1, ncmax);
 waitT = zeros(1, ncmax);
-[xi, yi, i1,i2, ni, nb, ux, uy, L] = plotroad();
+[xi, yi, i1,i2, ni, nb, ux, uy] = plotroad();
 
 % Note that nbin, bin can be derived from i2, and that nout, bout can be
 % derived from i1, as follows:
@@ -25,6 +26,7 @@ nbin = zeros(ni,1);
 nbout = zeros(ni,1);
 % for each intersection calculate total number of incoming
 % and exiting intersections
+
 for i = 1:ni
     nbin(i) = sum(i2 == i);
     nbout(i) = sum(i1 == i);
@@ -69,6 +71,7 @@ nextb = zeros(1, ncmax);
 ncb = zeros(1, nb);
 weights = zeros(1, nb);
 onroad = zeros(1,ncmax);
+final_weights = zeros(nb);
 
 % create our set number of cars
 createcars(xi,yi,i1,nb,ux,uy,L);
@@ -76,20 +79,14 @@ createcars(xi,yi,i1,nb,ux,uy,L);
 % commence the simulation 
 
 for clock = 1:clockmax
-       t = clock * dt;
-% ===== density-based traffic light system ====
-% %     set lights based on number of cars on block
-       setlights();
-% ===== density-based traffic light system end ====
-
-% ===== synchronous traffic light system ====
-%     comment the previous function to switch  
-%     traffic to synchronized lights
-%     synclights();
-% ===== synchronous traffic light system end ====
-
+    t = clock * dt;
+       
+    % array of differentiated weights of all blocks based off 
+    % car density     
+    weights_at_t = sensorized_setlights();
     movecars(xi,yi,i1,i2,ux,uy,nbout,bout,L,nb,S,dt);
     plotcars(nc,x,y,onroad)
+    
 end
 
 carswaiting();

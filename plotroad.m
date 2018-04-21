@@ -1,4 +1,4 @@
-function [xi,yi,i1,i2,ni,nb,ux,uy,L] = plotroad()
+function [xi,yi,i1,i2,ni,nb,ux,uy] = plotroad()
     global L
 %
 

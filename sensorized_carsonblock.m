@@ -1,6 +1,9 @@
-function [] = sensorized_carsonblock()
+function [weights_at_t] = sensorized_carsonblock()
 
-    global nb firstcar nextcar weights p L
+    global nb firstcar nextcar weights p L final_weights
+    
+    weights_at_t = zeros(nb);
+    
     for b = 1:nb
 %       check if there's a car on block b
         c = firstcar(b);
@@ -16,6 +19,12 @@ function [] = sensorized_carsonblock()
             end
 %           set the weighted edge of the block b
             weights(b) = weight;
-        end     
+            weights_at_t(b) = weight;
+        end 
     end
+    
+    normalize(weights_at_t);
+    weights_at_t = (weights_at_t - min(weights_at_t)) ./ (max(weights_at_t) - min(weights_at_t));
+    final_weights = final_weights + weights_at_t;
+    
 end

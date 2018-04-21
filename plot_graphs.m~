@@ -1,8 +1,0 @@
-global nc g_runs g_tave
-tlc_x = linspace(.1, 1.5, g_runs);
-tlcT_x = linspace(.1, 5, g_runs);
-
-plot(tlcT_x, g_ave);
-
-xlabel('Traffic Light Duration')
-ylabel('Average Car Speed')

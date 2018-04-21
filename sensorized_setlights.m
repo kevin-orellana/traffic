@@ -1,4 +1,4 @@
-function [] =sensorized_setlights()
+function [weights_at_t] = sensorized_setlights()
     
     global ni nbin  S bin weights
      % Traffic Lights
@@ -11,7 +11,8 @@ function [] =sensorized_setlights()
         % denotes red and S = 1 denotes green
     
         % calculate weights of every block
-        sensorized_carsonblock();
+        %weights_at_t = sensorized_carsonblock();
+        weights_at_t = sensorized_carsonblock();
         
 %   for each intersection
     for i = 1:ni
@@ -53,6 +54,7 @@ function [] =sensorized_setlights()
             S(block_green) = 1;
         end
     end
+    
 end
 
 
