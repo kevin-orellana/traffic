@@ -63,9 +63,10 @@ function  movecars(xi,yi,i1,i2,ux,uy,nbout,bout,L,nb,S,dt)
                 decidenextblock(xi,yi,i2,ux,uy,nbout,bout,b,c)
                 cartonextblock(xi,yi,i1,ux,uy,c,b)
             else
-                % update it's position 
-                x(c) = xi(i1(b)) + p(c)*ux(b);
-                y(c) = yi(i1(b)) + p(c)*uy(b);
+                % update it's position, third term used for two-way road
+                % offset
+                x(c) = xi(i1(b)) + p(c)*ux(b) + uy(b) * 0.05;
+                y(c) = yi(i1(b)) + p(c)*uy(b) - ux(b) * 0.05;
                 % car ahead is now this car
                 ca = c;
             end 

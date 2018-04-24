@@ -1,5 +1,5 @@
 function [xi,yi,i1,i2,ni,nb,ux,uy] = plotroad()
-    global L
+    global L weights_at_t
 %
 
 % xi(i), yi(i) = coordinates of intersection i
@@ -31,14 +31,38 @@ uy = yi(i2)-yi(i1);
 L = sqrt(ux.^2+uy.^2);
 ux = ux./L;
 uy = uy./L;
-hold on
-axis([min(xi)-1 max(xi)+1 min(yi)-1 max(yi)+1])
 
+hold on
+axis([min(xi)-1 max(xi)+1 min(yi)-1 max(yi)+1]);
+
+%Determine the 
+colors = zeros(3, nb);
+if isempty(weights_at_t) || isnan(weights_at_t(1,2))
+    for i = 1:nb
+        colors(:, i) = [0, 0, 0];
+    end
+else
+    for i = 1:nb
+        colors(:, i) = [1, 0.9 - weights_at_t(i) * 0.9,  0.9 - weights_at_t(i)* 0.9];
+    end
+end
+
+    
 for b = 1:nb
 
     ux1 = xi(i2(b))-xi(i1(b));
     uy1 = yi(i2(b))-yi(i1(b));
-    quiver(xi(i1(b)),yi(i1(b)),ux1,uy1,'k')
+    x1 = xi(i1(b));
+    y1 = yi(i1(b));
+    
+    %Seperate two roads
+    x1 = x1 + uy(b) * 0.05;
+    y1 = y1 - ux(b) * 0.05;
+    %adjust road position for appearence
+    x1 = x1 + ux(b) * 0.1;
+    y1 = y1 + uy(b) * 0.1;
+    quiver(x1,y1,ux1,uy1,'k', 'color', colors(:, b));
+    
     xt = (xi(i1(b)) + xi(i2(b)))/2;
     yt = (yi(i1(b)) + yi(i2(b)))/2;
     str = ['(',num2str(b),')'];
@@ -48,7 +72,7 @@ end
 for i = 1:ni
     % change to string
    str = num2str(i);
-   plot(xi(i),yi(i),'rd')
+   plot(xi(i),yi(i),'rd');
    %location of text
    xt = xi(i)+0.1;
    yt = yi(i)-0.1;

@@ -2,7 +2,7 @@ function [t_weights] = sensorized_carsonblock()
 
     global nb firstcar nextcar weights p L final_weights
     
-    t_weights = zeros(nb);
+    t_weights = zeros(1, nb);
     
     for b = 1:nb
 %       check if there's a car on block b

@@ -16,7 +16,7 @@ format long;
 aggregateVel = zeros(1, ncmax);
 stopR = zeros(1, ncmax);
 waitT = zeros(1, ncmax);
-[xi, yi, i1,i2, ni, nb, ux, uy, L] = plotroad();
+[xi, yi, i1,i2, ni, nb, ux, uy] = plotroad();
 
 % Note that nbin, bin can be derived from i2, and that nout, bout can be
 % derived from i1, as follows:

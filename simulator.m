@@ -6,6 +6,7 @@ function [] = simulator (set_ncmax, set_tlc, set_speedlimit, set_clockmax)
 global nc lastcar nextcar firstcar x y p nextb ncmax vmax onroad
 global aggregateVel clockmax stopR waitT ncb ni nbin bin S nb bout
 global t tlc tlcstep jgreen weights allV clock L final_weights
+global weights_at_t
 
 
 % cap the number of cars on map
@@ -85,7 +86,7 @@ for clock = 1:clockmax
     % car density     
     weights_at_t = sensorized_setlights();
     movecars(xi,yi,i1,i2,ux,uy,nbout,bout,L,nb,S,dt);
-    plotcars(nc,x,y,onroad)
+    plotcars(nc,x,y,onroad);
     
 end
 
