@@ -7,7 +7,38 @@ global nc lastcar nextcar firstcar x y p nextb ncmax vmax onroad
 global aggregateVel clockmax stopR waitT ncb ni nbin bin S nb bout
 global t tlc tlcstep jgreen weights allV clock L final_weights
 global weights_at_t
+global xi yi i1_oneway i2_oneway i1 i2 ni nb ux uy L
 
+
+% xi(i), yi(i) = coordinates of intersection i
+xi = [0 .5  .5 2 2 3 3 3 4 4 5.5 5.5 6 ];
+yi = [3 .5 5.5 4 2 0 3 6 2 4 5.5 .5 3 ];
+
+% i1(b), i2(b) = indices of intersections connected by block b, ordered by
+% the direction traffic flow
+i1_oneway = [1 3 8  11 13 12 6 2 2 5 5 4 1 11 10 9 13 8 10 6 5 7 4 9 9 7 4 10];
+i2_oneway = [3 8 11 13 12 6 2 1 5 6 1 3 4 10 8 12 9  4 13 9 4 5 7 5 7 10 10 9];
+
+% Creating two-way roads
+i1 = zeros(1, length(i1_oneway) * 2);
+i2 = zeros(1, length(i2_oneway) * 2);
+for i = 1:2:length(i1) - 1
+    i1(i:i+1) = [i1_oneway(ceil(i/2)), i2_oneway(ceil(i/2))];
+    i2(i:i+1) = [i2_oneway(ceil(i/2)), i1_oneway(ceil(i/2))];    
+end
+
+ni = length(xi);  % ni = # of intersections
+nb = length(i1);  % nb = # of blocks
+% Geometric information
+% L(b) = length of block b
+% (ux(b), uy(b)) = unit vector along block b in direction of traffic flow
+% Given xi, yi, we can find L, ux, uy as follows:
+
+ux = xi(i2)-xi(i1);
+uy = yi(i2)-yi(i1);
+L = sqrt(ux.^2+uy.^2);
+ux = ux./L;
+uy = uy./L;
 
 % cap the number of cars on map
 allV = zeros(1);
@@ -19,7 +50,7 @@ format long;
 aggregateVel = zeros(1, ncmax);
 stopR = zeros(1, ncmax);
 waitT = zeros(1, ncmax);
-[xi, yi, i1,i2, ni, nb, ux, uy] = plotroad();
+plotroad();
 
 % Note that nbin, bin can be derived from i2, and that nout, bout can be
 % derived from i1, as follows:
