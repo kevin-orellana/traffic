@@ -9,7 +9,7 @@ yi = [3 .5 5.5 4 2 0 3 6 2 4 5.5 .5 3 ];
 % i1(b), i2(b) = indices of intersections connected by block b, ordered by
 % the direction traffic flow
 i1_oneway = [1 3 8  11 13 12 6 2 2 5 5 4 1 11 10 9 13 8 10 6 5 7 4 9 9 7 4 10];
-i2_oneway = [3 8 11 13 12 6  2 1 5 6 1 3 4 10 8 12 9  4 13 9 4 5 7 5 7 10 10 9];
+i2_oneway = [3 8 11 13 12 6 2 1 5 6 1 3 4 10 8 12 9  4 13 9 4 5 7 5 7 10 10 9];
 
 % Creating two-way roads
 i1 = zeros(1, length(i1_oneway) * 2);
@@ -65,8 +65,13 @@ for b = 1:nb
     
     xt = (xi(i1(b)) + xi(i2(b)))/2;
     yt = (yi(i1(b)) + yi(i2(b)))/2;
+    
+    %Seperate text for two roads
+    xt = xt + uy(b) * 0.1;
+    yt = yt - ux(b) * 0.1;
+    
     str = ['(',num2str(b),')'];
-    %text(xt,yt,str)
+    text(xt,yt,str, 'FontSize', 6)
 end
 
 for i = 1:ni
@@ -77,7 +82,7 @@ for i = 1:ni
    xt = xi(i)+0.1;
    yt = yi(i)-0.1;
    % text the interesection
-   % text(xt,yt,str)
+    text(xt,yt,str)
 end
 
 hold off

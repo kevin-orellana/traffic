@@ -45,6 +45,7 @@ for i = 1:ni
     bout(i, 1:nbout(i)) = find(i1 == i);
 end
 
+bin;
 
 % Initialize the street lights, one green per intersection
 jgreen = ones(1,ni);
