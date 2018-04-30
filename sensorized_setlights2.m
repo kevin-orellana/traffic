@@ -16,14 +16,8 @@ function [t_weights] = sensorized_setlights2(ux, uy)
         
 %   for each intersection
     for i = 1:ni
-    %   if there is only one incoming block into the intersection
-    %   ignoring the case where pedestrians are crossing road so we set
-    %   a two-block one-way intersection's traffic light as always green
-        if nbin(i) == 2
-            % switch the light of the incoming block
-%             intersection i has only one entrance. Set to green always.
-            S(bin(:,1)) = 1;
-        else
+        
+
     %       else there are more than two-ways in the intersection
     %       get the number of blocks entering intersection i
             nbi = nbin(i);
@@ -35,13 +29,14 @@ function [t_weights] = sensorized_setlights2(ux, uy)
             for j = 1:nbi 
                 track = bin(i,j);
                 dot_product = (ux(first_block)*ux(track)) + (uy(first_block)*uy(track));
-                if ((dot_product > -1) && (dot_product < -.65) && (dot_product < min_dot))
+                if ((dot_product >= -1) && (dot_product < -.5) && (dot_product < min_dot))
                        min_dot = dot_product;
                        opposite = track;       
                 end
             end
         
             most_populated_lane = first_block;
+            
             %if no opposite block, set opposite as null
             if (isnan(opposite))
                 most_populated_lane_weight = weights(first_block);
@@ -58,12 +53,11 @@ function [t_weights] = sensorized_setlights2(ux, uy)
                 for k = 1:nbi 
                     track2 = bin(i,k);
                     dot_product2 = (ux(this_block)*ux(track2)) + (uy(this_block)*uy(track2));
-                    if ((dot_product2 > -1) && (dot_product2 < -.65) && (dot_product2 < min_dot2))
+                    if ((dot_product2 >= -1) && (dot_product2 < -.65) && (dot_product2 < min_dot2))
                             min_dot2 = dot_product2;
                             opposite2 = track2;       
                     end
                 end
-           end
            
             %if no opposite block, set opposite as null
             if (isnan(opposite2))
@@ -77,7 +71,8 @@ function [t_weights] = sensorized_setlights2(ux, uy)
                    most_populated_lane_weight = this_lane_weight;
                    opposite = opposite2;
             end
-          
+            
+          end
     %       set all lights at interesetion i to red
             for j = 1 : nbin(i)
                     % state of light of all blocks entering are set to red
@@ -90,7 +85,6 @@ function [t_weights] = sensorized_setlights2(ux, uy)
             if (~isnan(opposite))
                S(opposite) = 1;
             end
-        end
     end
     
 end

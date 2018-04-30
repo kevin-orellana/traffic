@@ -7,7 +7,7 @@ global nc lastcar nextcar firstcar x y p nextb ncmax vmax onroad
 global aggregateVel clockmax stopR waitT ncb ni nbin bin S nb bout
 global t tlc tlcstep jgreen weights allV clock L final_weights
 global weights_at_t
-global xi yi i1_oneway i2_oneway i1 i2 ni nb ux uy L
+global xi yi i1_oneway i2_oneway i1 i2 ux uy 
 
 
 % xi(i), yi(i) = coordinates of intersection i
@@ -116,10 +116,10 @@ for clock = 1:clockmax
        
     % array of differentiated weights of all blocks based off 
     % car density     
-    weights_at_t = sensorized_setlights();
+    weights_at_t = sensorized_setlights2(ux, uy);
     movecars(xi,yi,i1,i2,ux,uy,nbout,bout,L,nb,S,dt);
-    plotcars(nc,x,y,onroad);
-    
+    plotcars(nc,x,y,onroad)
+ 
 end
 
 carswaiting();
