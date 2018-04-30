@@ -28,6 +28,7 @@ function [t_weights] = sensorized_carsonblock()
     t_weights = (t_weights - mean(t_weights)) ./ std(t_weights);
     % put in range 0 - 1
     t_weights = (t_weights - min(t_weights)) ./ (max(t_weights) - min(t_weights));
-    final_weights = final_weights + t_weights;
+    final_weights(1, :) = final_weights + t_weights;
+   
     
 end

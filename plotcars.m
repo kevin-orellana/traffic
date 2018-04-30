@@ -8,7 +8,7 @@ function plotcars(nc,x,y,onroad)
         %disp(hcars)
         set(hcars,'xdata',x(find(onroad)),'ydata',y(find(onroad)))
     end
-    plotroad();
+%     plotroad();
     drawnow;
     
 end
