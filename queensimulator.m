@@ -1,11 +1,11 @@
-function [] = queensimulator ( clock)
+function [] = queensimulator ( clock, time_spent)
     global end_nc init_nc i1_one i2_one
     global clockmax_queen
     global xi_q yi_q i1_o_q i2_o_q
     global realtime
 %     we'll only monitor how well the model takes to increasing number of
 %     cars
-    realtime = 1;
+    realtime = time_spent;
     init_nc = 30;
     end_nc = 90;
     

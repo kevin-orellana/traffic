@@ -6,7 +6,7 @@ function [] = simulator (set_ncmax, set_tlc, set_speedlimit, set_clockmax, draw,
 global nc lastcar nextcar firstcar x y p nextb ncmax vmax onroad
 global aggregateVel clockmax stopR waitT ncb ni nbin bin S nb bout
 global t tlc tlcstep jgreen weights allV clock L final_weights
-global weights_at_t realtime
+global weights_at_t realtime 
 global xi yi i1_oneway i2_oneway i1 i2 ni nb ux uy L car_colors
 global xi_q yi_q i1_o_q i2_o_q
 % initialize car colors
@@ -14,6 +14,8 @@ car_colors = zeros(set_ncmax, 3);
 for i = 1:set_ncmax
     car_colors(i, :) = rand(1,3);
 end
+
+dt = realtime / clockmax;
 
 global xi yi i1_oneway i2_oneway i1 i2 ni nb ux uy L
 global xi_q yi_q i1_o_q i2_o_q
@@ -95,7 +97,6 @@ tlc = tlcstep;
 clockmax = set_clockmax;
 % intitialize state of lights for each block (one-way)
 S = zeros(1, nb);
-dt = 1;
 Lmax = max(L);
 
 nc = 0;

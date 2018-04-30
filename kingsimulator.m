@@ -4,7 +4,7 @@ function [] = kingsimulator()
    
     g_runs = 5;
     
-    init_vel = .5;
+    init_vel = .7;
     end_vel = 1.5;
 
     init_tlc = 3;
