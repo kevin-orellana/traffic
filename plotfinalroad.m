@@ -41,7 +41,7 @@ axis([min(xi)-1 max(xi)+1 min(yi)-1 max(yi)+1]);
 %Determine the 
 colors = zeros(3, nb);
 %  weights_at_t = 
- average_weights = final_weights./(clockmax);
+average_weights = final_weights./(clockmax);
 average_weights = average_weights - min(average_weights(:));
 average_weights = average_weights ./ max(average_weights(:)); 
  

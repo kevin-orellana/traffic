@@ -7,8 +7,14 @@ global nc lastcar nextcar firstcar x y p nextb ncmax vmax onroad
 global aggregateVel clockmax stopR waitT ncb ni nbin bin S nb bout
 global t tlc tlcstep jgreen weights allV clock L final_weights
 global weights_at_t
+
+% <<<<<<< Updated upstream
+% global xi yi i1_oneway i2_oneway i1 i2 ux uy 
+% 
+% =======
 global xi yi i1_oneway i2_oneway i1 i2 ni nb ux uy L
 global xi_q yi_q i1_o_q i2_o_q
+% >>>>>>> Stashed changes
 
 % xi(i), yi(i) = coordinates of intersection i
 xi = [0 .5  .5 2 2 3 3 3 4 4 5.5 5.5 6 ];

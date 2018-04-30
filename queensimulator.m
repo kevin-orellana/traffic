@@ -1,4 +1,4 @@
-function [] = queensimulator (a, b, clock)
+function [] = queensimulator ( clock)
     global end_nc init_nc i1_one i2_one
     global clockmax_queen
     global xi_q yi_q i1_o_q i2_o_q
@@ -10,6 +10,11 @@ function [] = queensimulator (a, b, clock)
     
     xi_q = a;
     yi_q = b;
+    
+    xi_q = [0 .5  .5 2 2 3 3 3 4 4 5.5 5.5 6 ];
+    yi_q = [3 .5 5.5 4 2 0 3 6 2 4 5.5 .5 3 ];
+
+    
     clockmax_queen = clock;
     
 %     static.. make dynamic
