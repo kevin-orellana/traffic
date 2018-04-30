@@ -1,0 +1,22 @@
+function plotcars(nc,x,y,onroad)
+    global car_colors
+    if (nc>0 && sum(onroad)>0)
+        %hcars = gobjects(1, nc);
+        hcars = plot(x ,y, 'o', 'MarkerSize', 3, 'MarkerEdgeColor',car_colors, 'MarkerFaceColor', car_colors);%plot(x ,y, 'o', 'MarkerSize', 3, 'MarkerEdgeColor',car_colors, 'MarkerFaceColor', car_colors);%,'bo');  
+     
+        for i = 1:nc
+            %hcars(1,i) = plot(x(i) ,y(i), 'o', 'MarkerSize', 3, 'MarkerEdgeColor',car_colors(:, i), 'MarkerFaceColor', car_colors(:, i));%,'bo');  
+            %disp(car_colors(:, 30))
+            %set(hcars(1, i),'xdata',x(i),'ydata',y(i))
+            %if onroad(i)
+            %    disp(i)
+            %    set(hcars(i),'xdata',x(i),'ydata',y(i))
+            %end
+        end
+        %disp(hcars)
+        set(hcars,'xdata',x(find(onroad)),'ydata',y(find(onroad)))
+    end
+    plotroad();
+    drawnow;
+    
+end

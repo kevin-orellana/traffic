@@ -7,7 +7,13 @@ global nc lastcar nextcar firstcar x y p nextb ncmax vmax onroad
 global aggregateVel clockmax stopR waitT ncb ni nbin bin S nb bout
 global t tlc tlcstep jgreen weights allV clock L final_weights
 global weights_at_t
-global xi yi i1_oneway i2_oneway i1 i2 ni nb ux uy L
+global xi yi i1_oneway i2_oneway i1 i2 ni nb ux uy L car_colors
+
+% initialize car colors
+car_colors = zeros(set_ncmax, 3);
+for i = 1:set_ncmax
+    car_colors(i, :) = rand(1,3);
+end
 
 
 % xi(i), yi(i) = coordinates of intersection i
