@@ -8,8 +8,8 @@ function [] = queensimulator ( clock)
     init_nc = 30;
     end_nc = 90;
     
-    xi_q = a;
-    yi_q = b;
+%     xi_q = a;
+%     yi_q = b;
     
     xi_q = [0 .5  .5 2 2 3 3 3 4 4 5.5 5.5 6 ];
     yi_q = [3 .5 5.5 4 2 0 3 6 2 4 5.5 .5 3 ];
