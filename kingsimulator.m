@@ -1,6 +1,6 @@
 function [] = kingsimulator()
     global g_tave g_tstd g_vave g_vstd g_nc  g_runs g_run init_nc end_nc fixed_tlc
-    global clockmax_queen realtime
+    global clockmax_queen realtime_simulation 
    
     g_runs = 5;
     
@@ -62,7 +62,7 @@ function [] = kingsimulator()
 %          end
 %     end
 
-    if (realtime)
+    if (realtime_simulation)
         tlc_sim = fixed_tlc;
         vel_sim = init_vel;
         nc_sim = nc_sim;
