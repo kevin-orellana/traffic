@@ -1,8 +1,10 @@
 function [t_weights] = sensorized_setlights_naive(ux, uy)
     
-    global ni nbin  S bin weights
+    global ni nbin  S bin ncb
     
     t_weights = sensorized_carsonblock();
+    carsonblock()
+    
 %   for each intersection
     for i = 1:ni
 
@@ -24,13 +26,13 @@ function [t_weights] = sensorized_setlights_naive(ux, uy)
                 end
             end
         
-            most_populated_lane = carsonblock(first_block);
+            most_populated_lane = first_block;
             
             %if no opposite block, set opposite as null
             if (isnan(opposite))
-                most_populated_lane_weight = carsonblock(first_block);
+                most_populated_lane_weight = ncb(first_block);
             else 
-                most_populated_lane_weight = carsonblock(first_block) + carsonblock(opposite);
+                most_populated_lane_weight = ncb(first_block) + ncb(opposite);
             end
             
             opposite2 = NaN;
@@ -50,9 +52,9 @@ function [t_weights] = sensorized_setlights_naive(ux, uy)
            
             %if no opposite block, set opposite as null
             if (isnan(opposite2))
-                this_lane_weight = carsonblock(this_block);
+                this_lane_weight = ncb(this_block);
             else 
-                this_lane_weight = carsonblock(this_block) + carsonblock(opposite2);
+                this_lane_weight = ncb(this_block) + ncb(opposite2);
             end
            
             if (this_lane_weight > most_populated_lane_weight)
