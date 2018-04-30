@@ -6,7 +6,7 @@ function [] = simulator (set_ncmax, set_tlc, set_speedlimit, set_clockmax, draw,
 global nc lastcar nextcar firstcar x y p nextb ncmax vmax onroad
 global aggregateVel clockmax stopR waitT ncb ni nbin bin S nb bout
 global t tlc tlcstep jgreen weights allV clock L final_weights
-global weights_at_t
+global weights_at_t realtime
 global xi yi i1_oneway i2_oneway i1 i2 ni nb ux uy L car_colors
 global xi_q yi_q i1_o_q i2_o_q
 % initialize car colors
@@ -125,6 +125,9 @@ for clock = 1:clockmax
     % car density     
     weights_at_t = sensorized_setlights2(ux, uy);
     movecars(xi,yi,i1,i2,ux,uy,nbout,bout,L,nb,S,dt);
+    if (realtime)
+        plotcars(nc,x,y,onroad)
+    end
 
 end
 

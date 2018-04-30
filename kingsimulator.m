@@ -1,6 +1,6 @@
 function [] = kingsimulator()
     global g_tave g_tstd g_vave g_vstd g_nc  g_runs g_run init_nc end_nc fixed_tlc
-    global clockmax_queen 
+    global clockmax_queen realtime
    
     g_runs = 5;
     
@@ -44,19 +44,46 @@ function [] = kingsimulator()
     
     nc_sim = init_nc;
     
-    for g_run=1:g_runs
-         tlc_sim = fixed_tlc;
-         vel_sim = init_vel;
-         nc_sim = nc_sim + dt_nc;
-         disp(g_run);
-         
-         if (g_run == count)
-             simulator(nc_sim, tlc_sim, vel_sim, clockmax_queen, 1, count);
-             count = count + count_step;
-         else 
-              simulator(nc_sim, tlc_sim, vel_sim, clockmax_queen, 0, count);
-         end
-         
+%     for g_run=1:g_runs
+%          tlc_sim = fixed_tlc;
+%          vel_sim = init_vel;
+%          nc_sim = nc_sim + dt_nc;
+%          disp(g_run);
+%          if (realtime)
+%               if (g_run == count)
+%              simulator(nc_sim, tlc_sim, vel_sim, clockmax_queen, 1, count);
+%              count = count + count_step;
+%               else
+%                   simulator(nc_sim, tlc_sim, vel_sim, clockmax_queen, 0, count);
+%               end
+%          
+%          else
+%              simulator(nc_sim, tlc_sim, vel_sim, clockmax_queen, 0, count);
+%          end
+%     end
+
+    if (realtime)
+        tlc_sim = fixed_tlc;
+        vel_sim = init_vel;
+        nc_sim = nc_sim;
+        
+        simulator(nc_sim, tlc_sim, vel_sim, clockmax_queen, 0, count);         
+    else
+        for g_run=1:g_runs
+             tlc_sim = fixed_tlc;
+             vel_sim = init_vel;
+             nc_sim = nc_sim + dt_nc;
+             disp(g_run);
+
+             if (g_run == count)
+                 simulator(nc_sim, tlc_sim, vel_sim, clockmax_queen, 1, count);
+                 count = count + count_step;
+             else
+                  simulator(nc_sim, tlc_sim, vel_sim, clockmax_queen, 0, count);
+             end
+             
+        end
+          plot_graphs();
     end
-      plot_graphs();
+    
 end

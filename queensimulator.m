@@ -2,9 +2,10 @@ function [] = queensimulator ( clock)
     global end_nc init_nc i1_one i2_one
     global clockmax_queen
     global xi_q yi_q i1_o_q i2_o_q
+    global realtime
 %     we'll only monitor how well the model takes to increasing number of
 %     cars
-
+    realtime = 1;
     init_nc = 30;
     end_nc = 90;
     
@@ -30,11 +31,10 @@ function [] = queensimulator ( clock)
 %     
 %     i1_o_q = [1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 25 26 27 28 29 30 31 32 24 17 18 19 20 21 22 23 1 9 17 26 18 10 3 11 19 28 20 12 5 13 21 30 22 14 7 15 23 32 24 16];
 %     i2_o_q = [2 3 4 5 6 7 8 1 10 11 12 13 14 15 16 9 26 27 28 29 30 31 32 25 17 18 19 20 21 22 23 24 9 17 25 18 10 2 11 19 27 20 12 4 13 21 29 22 14 6 15 23 31 24 16 8];
-    %    Map 3 end (Pikasso) ===============================
-
+%    Map 3 end (Pikasso) ===============================
 
     clockmax_queen = clock;
-         
+             
     kingsimulator();
     
 end
