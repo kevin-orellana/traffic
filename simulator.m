@@ -8,22 +8,8 @@ global aggregateVel clockmax stopR waitT ncb ni nbin bin S nb bout
 global t tlc tlcstep jgreen weights allV clock L final_weights
 global weights_at_t
 
-% <<<<<<< Updated upstream
-% global xi yi i1_oneway i2_oneway i1 i2 ux uy 
-% 
-% =======
 global xi yi i1_oneway i2_oneway i1 i2 ni nb ux uy L
 global xi_q yi_q i1_o_q i2_o_q
-% >>>>>>> Stashed changes
-
-% xi(i), yi(i) = coordinates of intersection i
-xi = [0 .5  .5 2 2 3 3 3 4 4 5.5 5.5 6 ];
-yi = [3 .5 5.5 4 2 0 3 6 2 4 5.5 .5 3 ];
-
-% i1(b), i2(b) = indices of intersections connected by block b, ordered by
-% the direction traffic flow
-i1_oneway = [1 3 8  11 13 12 6 2 2 5 5 4 1 11 10 9 13 8 10 6 5 7 4 9 9 7 4 10];
-i2_oneway = [3 8 11 13 12 6 2 1 5 6 1 3 4 10 8 12 9  4 13 9 4 5 7 5 7 10 10 9];
 
 xi = xi_q;
 yi = yi_q;

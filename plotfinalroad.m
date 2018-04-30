@@ -1,18 +1,18 @@
 function [xi,yi,i1,i2,ni,nb,ux,uy] = plotfinalroad(count)
     global L weights_at_t xi_inter yi_inter i1_oneway i2_oneway i1_one i2_one
-    global clockmax final_weights
+    global clockmax final_weights i1_o_q i2_o_q xi_q yi_q
     
 % xi(i), yi(i) = coordinactes of intersection i
-xi = xi_inter;
-yi = yi_inter;
+xi = xi_q;
+yi = yi_q;
 
 % i1(b), i2(b) = indices of intersections connected by block b, ordered by
 % the direction traffic flow
-i1_oneway = i1_one;
-i2_oneway = i2_one;
+i1_oneway = i1_o_q;
+i2_oneway = i2_o_q;
 
-% i1_oneway = [1 3 8  11 13 12 6 2 2 5 5 4 1 11 10 9 13 8 10 6 5 7 4 9 9 7 4 10];
-% i2_oneway = [3 8 11 13 12 6  2 1 5 6 1 3 4 10 8 12 9  4 13 9 4 5 7 5 7 10 10 9];
+%  i1_oneway = [1 3 8  11 13 12 6 2 2 5 5 4 1 11 10 9 13 8 10 6 5 7 4 9 9 7 4 10];
+%  i2_oneway = [3 8 11 13 12 6  2 1 5 6 1 3 4 10 8 12 9  4 13 9 4 5 7 5 7 10 10 9];
 
 % Creating two-way roads
 i1 = zeros(1, length(i1_oneway) * 2);
@@ -44,10 +44,9 @@ colors = zeros(3, nb);
 average_weights = final_weights./(clockmax);
 average_weights = average_weights - min(average_weights(:));
 average_weights = average_weights ./ max(average_weights(:)); 
+%  disp(nb);
  
- 
- 
- disp(average_weights);
+%  disp(average_weights);
 if isempty(average_weights) || isnan(average_weights(1,2))
     for i = 1:nb
         colors(:, i) = [0, 0, 0];
@@ -80,7 +79,7 @@ for b = 1:nb
     xt = (xi(i1(b)) + xi(i2(b)))/2 + val;
     yt = (yi(i1(b)) + yi(i2(b)))/2 + val;
     str = ['(',num2str(b),')'];
-%     text(xt,yt,str)
+%      text(xt,yt,str)
 end
 
 for i = 1:ni
