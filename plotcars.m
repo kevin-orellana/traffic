@@ -4,7 +4,7 @@ function plotcars(nc,x,y,onroad)
         hcars = plot(x ,y, 'o', 'MarkerSize', 3);%,'bo');  
         set(hcars,'xdata',x(find(onroad)),'ydata',y(find(onroad)))
     end
-    plotroad();
+%     plotroad();
     drawnow;
     
 end
