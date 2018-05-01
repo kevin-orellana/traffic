@@ -15,10 +15,8 @@ for i = 1:set_ncmax
     car_colors(i, :) = rand(1,3);
 end
 
+clockmax = set_clockmax;
 dt = time_alloted / clockmax;
-
-global xi yi i1_oneway i2_oneway i1 i2 ni nb ux uy L
-global xi_q yi_q i1_o_q i2_o_q
 
 xi = xi_q;
 yi = yi_q;

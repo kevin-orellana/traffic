@@ -30,7 +30,7 @@ for b = 1:nb
     %adjust road position for appearence
     x1 = x1 + ux(b) * 0.1;
     y1 = y1 + uy(b) * 0.1;
-    quiver(x1,y1,ux1,uy1,'k', 'color', colors(:, b));
+    quiver(x1,y1,ux1,uy1,'k', 'color', colors(:, b), 'linewidth', 2);
     
     xt = (xi(i1(b)) + xi(i2(b)))/2;
     yt = (yi(i1(b)) + yi(i2(b)))/2;
