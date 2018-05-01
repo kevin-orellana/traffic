@@ -2,7 +2,7 @@ function [] = kingsimulator()
     global g_tave g_tstd g_vave g_vstd g_nc  g_runs g_run init_nc end_nc fixed_tlc
     global clockmax_queen realtime_simulation 
    
-    g_runs = 5;
+    g_runs = 100;
     
     init_vel = .7;
     end_vel = 1.5;
