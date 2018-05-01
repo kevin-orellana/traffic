@@ -6,7 +6,7 @@ function [] = simulator (set_ncmax, set_tlc, set_speedlimit, set_clockmax, draw,
 global nc lastcar nextcar firstcar x y p nextb ncmax vmax onroad
 global aggregateVel clockmax stopR waitT ncb ni nbin bin S nb bout
 global t tlc tlcstep jgreen weights allV clock L final_weights
-global weights_at_t time_alloted realtime_simulation
+global weights_at_t time_alloted realtime_simulation  t_weights
 global xi yi i1_oneway i2_oneway i1 i2 ni nb ux uy L car_colors
 global xi_q yi_q i1_o_q i2_o_q
 % initialize car colors
@@ -55,6 +55,7 @@ ncmax = set_ncmax;
 tlcstep = set_tlc;
 vmax = set_speedlimit;
 format long;
+
 
 aggregateVel = zeros(1, ncmax);
 stopR = zeros(1, ncmax);
@@ -113,6 +114,7 @@ ncb = zeros(1, nb);
 weights = zeros(1, nb);
 onroad = zeros(1,ncmax);
 final_weights = zeros(1, nb);
+t_weights = zeros(1, nb);
 
 % create our set number of cars
 createcars(xi,yi,i1,nb,ux,uy,L);
