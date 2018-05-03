@@ -36,6 +36,7 @@ end
 
 ni = length(xi);  % ni = # of intersections
 nb = length(i1);  % nb = # of blocks
+disp("nb "+nb);
 % Geometric information
 % L(b) = length of block b
 % (ux(b), uy(b)) = unit vector along block b in direction of traffic flow
@@ -124,7 +125,8 @@ for clock = 1:clockmax
        
     % array of differentiated weights of all blocks based off 
     % car density     
-    weights_at_t = sensorized_setlights2(ux, uy);
+      weights_at_t = sensorized_setlights2(ux, uy);
+%      weights_at_t = sensorized_setlights_naive(ux, uy);
     movecars(xi,yi,i1,i2,ux,uy,nbout,bout,L,nb,S,dt);
     if (realtime_simulation)
         plotcars(nc,x,y,onroad)

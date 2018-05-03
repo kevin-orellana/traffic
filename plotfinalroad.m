@@ -79,7 +79,7 @@ for b = 1:nb
     xt = (xi(i1(b)) + xi(i2(b)))/2 + val;
     yt = (yi(i1(b)) + yi(i2(b)))/2 + val;
     str = ['(',num2str(b),')'];
-%      text(xt,yt,str)
+%       text(xt,yt,str)
 end
 
 for i = 1:ni
@@ -90,7 +90,7 @@ for i = 1:ni
    xt = xi(i)+0.1;
    yt = yi(i)-0.1;
    % text the interesection
-   text(xt,yt,str)
+%    text(xt,yt,str)
 end
 drawnow;
 hold off

@@ -2,7 +2,8 @@ function [] = plotroad()
     global L weights_at_t xi yi i1_oneway i2_oneway i1 i2 ni nb ux uy L
 
 hold on
-axis([min(xi)-1 max(xi)+1 min(yi)-1 max(yi)+1]);
+% axis([min(xi)-1 max(xi)+1 min(yi)-1 max(yi)+1]);
+axis([0 35 0 35]);
 
 %Determine the 
 colors = zeros(3, nb);
@@ -40,7 +41,7 @@ for b = 1:nb
     yt = yt - ux(b) * 0.1;
     
     str = ['(',num2str(b),')'];
-    text(xt,yt,str, 'FontSize', 6)
+%     text(xt,yt,str, 'FontSize', 6)
 end
 
 for i = 1:ni
@@ -51,8 +52,8 @@ for i = 1:ni
    xt = xi(i)+0.1;
    yt = yi(i)-0.1;
    % text the interesection
-    text(xt,yt,str)
+%     text(xt,yt,str)
 end
 
-hold off
+% hold off
 end

@@ -1,8 +1,8 @@
-global nc g_runs g_tave g_vave
+global nc g_runs g_tave g_vave init_nc end_nc
 
 % X-Axis Ranges
 x_tlc = linspace(.1, 5, g_runs);
-x_nc = linspace(20, 70, g_runs);
+x_nc = linspace(init_nc, end_nc, g_runs);
 x_vmax = linspace(.1, 1.5, g_runs);
 
 % Plotting the Graphs
