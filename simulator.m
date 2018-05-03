@@ -127,15 +127,16 @@ for clock = 1:clockmax
     % car density     
       weights_at_t = sensorized_setlights2(ux, uy);
 %      weights_at_t = sensorized_setlights_naive(ux, uy);
+
     movecars(xi,yi,i1,i2,ux,uy,nbout,bout,L,nb,S,dt);
     if (realtime_simulation)
-        plotcars(nc,x,y,onroad)
+        plotcars(nc,x,y,onroad, count);
     end
 
 end
 
 if (draw)
-    plotfinalcars(nc,x,y,onroad, count);
+    plotcars(nc,x,y,onroad, count);
 end
 
 average_weights = final_weights./clockmax;

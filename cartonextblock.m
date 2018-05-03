@@ -25,7 +25,7 @@ function  cartonextblock(xi,yi,i1,ux,uy,c,b)
     % no cars before it
     nextcar(c) = 0;
     % update x, y coordiantes of car in new block
-    x(c) =  xi(i1(nextb(c))) + p(c)*ux(nextb(c));
-    y(c) =  yi(i1(nextb(c))) + p(c)*uy(nextb(c));
+    x(c) =  xi(i1(nextb(c))) + p(c)*ux(nextb(c)) + uy(nextb(c)) * 0.05;
+    y(c) =  yi(i1(nextb(c))) + p(c)*uy(nextb(c)) - ux(nextb(c)) * 0.05;
 end
 
