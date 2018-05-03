@@ -2,8 +2,8 @@ function [] = plotroad()
     global L weights_at_t xi yi i1_oneway i2_oneway i1 i2 ni nb ux uy L
 
 hold on
-% axis([min(xi)-1 max(xi)+1 min(yi)-1 max(yi)+1]);
-axis([0 35 0 35]);
+ axis([min(xi)-1 max(xi)+1 min(yi)-1 max(yi)+1]);
+% axis([0 35 0 35]);
 
 %Determine the 
 colors = zeros(3, nb);
@@ -56,5 +56,5 @@ for i = 1:ni
    %text(xt,yt,str)
 end
 
-% hold off
+hold off
 end

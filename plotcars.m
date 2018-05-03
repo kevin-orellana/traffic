@@ -1,6 +1,6 @@
 function plotcars(nc,x,y,onroad,count)
     global car_colors
-    plotroad();
+%     plotroad();
     if (nc>0 && sum(onroad)>0)
         figure(count);
         %hcars = gobjects(1, nc);
@@ -9,7 +9,8 @@ function plotcars(nc,x,y,onroad,count)
         %disp(hcars)
         set(hcars,'xdata',x(find(onroad)),'ydata',y(find(onroad)))
     end
+    plotroad();
     drawnow;
-    hold off;
+%     hold off;
     
 end
